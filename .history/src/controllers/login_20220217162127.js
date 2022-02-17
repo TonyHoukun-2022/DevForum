@@ -40,10 +40,11 @@ const login = async (req, res) => {
 
   res.json({ TOKEN: token });
 };
-//get user information
+
 const getuser = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    console.log(req.user);
+    const user = await User.find().select("-password");
 
     res.json(user);
   } catch (err) {
@@ -51,5 +52,4 @@ const getuser = async (req, res) => {
     res.status(500).send("Sercer Error");
   }
 };
-
 module.exports = { login, getuser };
